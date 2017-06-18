@@ -1,0 +1,61 @@
+
+.box {
+    display: block;
+    width: 60px;
+    height: 60px;
+    margin: 20px;
+    background-color: #fc4f4f;
+    box-shadow: #888 2px 2px 5px;
+    /*animation-name: bounce;*/
+    /*animation-iteration-count: 100;*/
+    /*animation-duration: 2s;*/
+    /*top: 30px;*/
+
+}
+.box:hover {
+    position: relative;
+    bottom: 3px;
+    right: 3px;
+    box-shadow: #888 6px 6px 5px;
+
+}
+.box:active {
+    position: relative;
+    bottom: -2px;
+    right: -2px;
+    box-shadow: #888 1px 1px 5px;
+
+}
+
+#one {
+    animation-timing-function: ease;
+}
+#two {
+    animation-timing-function: linear;
+}
+#three {
+    animation-timing-function: ease-in;
+}
+#four {
+    animation-timing-function: ease-out;
+}
+#five {
+    animation-timing-function: ease-in-out;
+}
+#six {
+}
+
+@keyframes bounce {
+    0% {
+        margin-left: 30px;
+    }
+    50% {
+        margin-left: 200px;
+        margin-top: 100px;
+        background-color: blue;
+    }
+    100% {
+        margin-left: 30px;
+    }
+}
+
