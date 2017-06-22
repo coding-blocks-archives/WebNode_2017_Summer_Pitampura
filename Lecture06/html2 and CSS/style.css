@@ -1,0 +1,45 @@
+/*p{*/
+    /*!*color: #fc4c4f;*!*/
+    /*!*font-size: large;*!*/
+/*}*/
+
+/*li{*/
+    /*font-size: 30px;*/
+    /*color: gold;*/
+
+/*}*/
+/*.odd{*/
+    /*color: cornflowerblue;*/
+/*}*/
+/*#even{*/
+    /*color: brown;*/
+/*}*/
+
+/**{*/
+    /*color: chartreuse;*/
+/*}*/
+/*div + p{*/
+    /*font-size: 30px;*/
+/*}*/
+.tag{
+    color: darkred;
+}
+
+[contenteditable="true"]{
+    color: chartreuse;
+}
+
+p{
+    color: gold;
+}
+
+p{
+    padding: 20px 50px 30px 70px;
+    border: dashed;
+}
+/*.odd{*/
+    /*color: chartreuse;*/
+/*}*/
+/*.even{*/
+    /*color: gold;*/
+/*}*/
