@@ -31,10 +31,9 @@ function addItemToList(list, itemIndex, itemObj) {
 function doneSelf(event) {
   let idToDone = event.target.getAttribute('data-id');
   console.log('Done = ' + idToDone);
-  todoItems[idToDone].done = true;
+  todoItems[idToDone].done = !todoItems[idToDone].done;
   saveTodos();
   refreshTodos()
-
 }
 
 function deleteSelf(event) {
