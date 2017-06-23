@@ -10,26 +10,39 @@ window.onload = function () {
 
   let todolist = document.getElementById('todolist');
 
-  retrieveTodos();
-  setItemArrayToList(todolist, todoItems);
+  refreshTodos();
 
   addtodo.onclick = function () {
     addAndSave(newtodo.value);
-    retrieveTodos();
-    setItemArrayToList(todolist, todoItems);
   }
 };
 
-function addItemToList(list, itemText) {
+function addItemToList(list, itemIndex, itemText) {
   let todoItem = document.createElement('li');
   todoItem.innerText = itemText;
+  todoItem.setAttribute('data-id', itemIndex);
+  todoItem.addEventListener('click', deleteSelf);
   list.appendChild(todoItem);
+}
+
+function deleteSelf(event) {
+  let idToDel = event.target.getAttribute('data-id');
+  console.log('Delete = ' + idToDel);
+  todoItems.splice(idToDel, 1);
+  localStorage.setItem('todos', todoItems.join(','))
+  refreshTodos()
+}
+
+function refreshTodos() {
+  retrieveTodos();
+  setItemArrayToList(todolist, todoItems);
+
 }
 
 function setItemArrayToList(list, itemArray) {
   list.innerHTML = '';
-  for (item of itemArray) {
-    addItemToList(list, item)
+  for (index in itemArray) {
+    addItemToList(list, index, itemArray[index])
   }
 }
 
@@ -42,6 +55,8 @@ function retrieveTodos () {
 
 function addAndSave(itemText) {
   todoItems.push(itemText);
-  localStorage.setItem('todos', todoItems.join(','))
+  localStorage.setItem('todos', todoItems.join(','));
+  refreshTodos();
+
 }
 
