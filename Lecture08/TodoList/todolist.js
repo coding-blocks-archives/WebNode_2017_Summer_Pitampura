@@ -17,9 +17,9 @@ window.onload = function () {
   }
 };
 
-function addItemToList(list, itemIndex, itemText) {
+function addItemToList(list, itemIndex, itemObj) {
   let todoItem = document.createElement('li');
-  todoItem.innerText = itemText;
+  todoItem.innerText = itemObj.task;
   todoItem.setAttribute('data-id', itemIndex);
   todoItem.addEventListener('click', deleteSelf);
   list.appendChild(todoItem);
@@ -29,7 +29,7 @@ function deleteSelf(event) {
   let idToDel = event.target.getAttribute('data-id');
   console.log('Delete = ' + idToDel);
   todoItems.splice(idToDel, 1);
-  localStorage.setItem('todos', todoItems.join(','))
+  saveTodos();
   refreshTodos()
 }
 
@@ -37,6 +37,10 @@ function refreshTodos() {
   retrieveTodos();
   setItemArrayToList(todolist, todoItems);
 
+}
+
+function saveTodos() {
+  localStorage.setItem('todolist', JSON.stringify(todoItems));
 }
 
 function setItemArrayToList(list, itemArray) {
@@ -47,15 +51,18 @@ function setItemArrayToList(list, itemArray) {
 }
 
 function retrieveTodos () {
-  let todosInStore = localStorage.getItem('todos')
+  let todosInStore = localStorage.getItem('todolist')
   if (todosInStore) {
-    todoItems = todosInStore.split(',');
+    todoItems = JSON.parse(todosInStore);
   }
 }
 
 function addAndSave(itemText) {
-  todoItems.push(itemText);
-  localStorage.setItem('todos', todoItems.join(','));
+  todoItems.push({
+    task: itemText,
+    done: false
+  });
+  saveTodos();
   refreshTodos();
 
 }
