@@ -21,8 +21,20 @@ function addItemToList(list, itemIndex, itemObj) {
   let todoItem = document.createElement('li');
   todoItem.innerText = itemObj.task;
   todoItem.setAttribute('data-id', itemIndex);
-  todoItem.addEventListener('click', deleteSelf);
+  if (itemObj.done) {
+    todoItem.style.textDecoration = 'line-through'
+  }
+  todoItem.addEventListener('click', doneSelf);
   list.appendChild(todoItem);
+}
+
+function doneSelf(event) {
+  let idToDone = event.target.getAttribute('data-id');
+  console.log('Done = ' + idToDone);
+  todoItems[idToDone].done = true;
+  saveTodos();
+  refreshTodos()
+
 }
 
 function deleteSelf(event) {
