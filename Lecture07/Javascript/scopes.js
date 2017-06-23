@@ -19,7 +19,7 @@ function myfun () {
     const m = 10;
     if (true) {
         var c = 45;
-        //console.log(m);
+        console.log(m);
         let ab = 'inside';
         var ac = 'inside';
         console.log(c);
@@ -31,15 +31,15 @@ function myfun () {
     console.log(ac);
 }
 
-var myVar = 'some value';
-
-function redeclare() {
-    var myVar = 'wow';
-    let myVar = myVar + ' that was not there'; //errors
-    console.log(myVar);
-}
-
-
-//myfun();
-
-redeclare();
+// var myVar = 'some value';
+//
+// function redeclare() {
+//     var myVar = 'wow';
+//     let myVar = myVar + ' that was not there'; //errors
+//     console.log(myVar);
+// }
+//
+//
+myfun();
+//
+// redeclare();
