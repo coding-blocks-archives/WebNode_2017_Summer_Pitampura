@@ -20,7 +20,8 @@ window.onload = function () {
   btnAdd.addEventListener('click', function (ev) {
     addTodo(inputNewTodo.value);
     showTodos();
-  })
+    inputNewTodo.value = '';
+  });
 
   btnClean.addEventListener('click', deleteDone);
 

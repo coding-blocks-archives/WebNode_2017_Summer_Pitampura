@@ -15,12 +15,12 @@
   color: #0275d8;
 }
 
-li:first-child > .fa-chevron-up {
+#list-todos > li:first-child > .fa-chevron-up {
   visibility: hidden;
   pointer-events: none;
 }
 
-li:last-child > .fa-chevron-down {
+#list-todos > li:last-child > .fa-chevron-down {
   visibility: hidden;
   pointer-events: none;
 }
