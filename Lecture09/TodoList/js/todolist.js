@@ -22,6 +22,8 @@ window.onload = function () {
     showTodos();
   })
 
+  btnClean.addEventListener('click', deleteDone);
+
 };
 
 function retrieveTodos() {
@@ -48,8 +50,40 @@ function showTodos() {
   }
 }
 
-function setTodoAsDone(todoId, doneValue) {
-  todoList[todoId].done = doneValue;
+function setTodoAsDone(ev) {
+  let todoId = ev.target.parentElement.getAttribute('data-id')
+  todoList[todoId].done = ev.target.checked;
+  saveTodos();
+  showTodos();
+}
+
+function deleteTodo(ev) {
+  let todoId = ev.target.parentElement.getAttribute('data-id');
+  todoList.splice(todoId,1);
+  saveTodos();
+  showTodos();
+}
+
+function moveTaskUp(ev) {
+  let todoId = ev.target.parentElement.getAttribute('data-id');
+  todoId = parseInt(todoId);
+  todoList.splice((todoId-1),0,todoList.splice(todoId,1)[0]);
+  saveTodos();
+  showTodos();
+}
+
+function moveTaskDown(ev) {
+  let todoId = ev.target.parentElement.getAttribute('data-id');
+  todoId = parseInt(todoId);
+  todoList.splice((todoId+1),0,todoList.splice(todoId,1)[0]);
+  saveTodos();
+  showTodos();
+}
+
+function deleteDone() {
+  todoList = todoList.filter(function (item, index, array) {
+    return !item.done;
+  });
   saveTodos();
   showTodos();
 }
@@ -62,21 +96,34 @@ function createTodoListItem(id, task, done) {
   let todoDoneCheckbox = document.createElement('input');
   todoDoneCheckbox.setAttribute('type', 'checkbox');
   todoDoneCheckbox.className = 'col-1';
-  todoDoneCheckbox.addEventListener('change', function (ev) {
-    setTodoAsDone(ev.target.parentNode.getAttribute('data-id'), ev.target.checked)
-  });
+  todoDoneCheckbox.addEventListener('change', setTodoAsDone);
 
   let taskSpan = document.createElement('span');
   taskSpan.innerText = task;
-  taskSpan.className = 'col-10';
+  taskSpan.className = 'col-8';
+
+  let taskDeleteButton = document.createElement('i');
+  taskDeleteButton.className = 'fa fa-remove col-1 delete';
+  taskDeleteButton.addEventListener('click', deleteTodo);
+
+  let moveUpButton = document.createElement('i');
+  moveUpButton.className = 'fa fa-chevron-up col-1 icn-move';
+  moveUpButton.addEventListener('click', moveTaskUp);
+
+  let moveDownButton = document.createElement('i');
+  moveDownButton.className = 'fa fa-chevron-down col-1 icn-move';
+  moveDownButton.addEventListener('click', moveTaskDown);
 
   if (done) {
-    taskSpan.className += ' todo-done'
+    taskSpan.className += ' todo-done';
     todoDoneCheckbox.setAttribute('checked', 'true');
   }
 
   todoListItem.appendChild(todoDoneCheckbox);
   todoListItem.appendChild(taskSpan);
+  todoListItem.appendChild(taskDeleteButton);
+  todoListItem.appendChild(moveUpButton);
+  todoListItem.appendChild(moveDownButton);
 
   return todoListItem;
 
