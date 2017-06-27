@@ -7,10 +7,10 @@ function Shape (edges, faces) {
   this.faces = faces
   var a = 10;
 }
-
-Shape.prototype.getEdgeFaceSum = function() {
+function gefs () {
   return this.edges + this.faces;
 }
+Shape.prototype.getEdgeFaceSum = gefs
 
 var cube = new Shape(12,6);
 var square = new Shape(4,1);
