@@ -16,6 +16,7 @@ function Person(firstName, lastName) {
   var firstInitial = firstName.charAt(0);
   var lastInitial = lastName.charAt(0);
 
+
   // like private function
   var getInitials = function () {
     return firstInitial + "." + lastInitial + "."
@@ -24,9 +25,6 @@ function Person(firstName, lastName) {
   //like public variables
   this.firstName = firstName;
   this.lastName = lastName;
-
-
-
 
 }
 
