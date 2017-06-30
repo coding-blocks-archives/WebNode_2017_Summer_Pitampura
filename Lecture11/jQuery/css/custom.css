@@ -1,0 +1,26 @@
+#todolist-container {
+  padding: 20px;
+}
+
+.todo-done {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.delete {
+  color: #d9534f;
+}
+
+.icn-move {
+  color: #0275d8;
+}
+
+#list-todos > li:first-child > .fa-chevron-up {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#list-todos > li:last-child > .fa-chevron-down {
+  visibility: hidden;
+  pointer-events: none;
+}
