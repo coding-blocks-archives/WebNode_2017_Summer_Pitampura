@@ -61,8 +61,7 @@ function moveTodoDown(ev) {
 }
 function createTodoListItem (i) {
 
-
-  let todoItem =$('<li>').attr('data-id', i).attr('class', 'list-group-item');
+  let todoItem =$(`<li data-id="${i}" class="list-group-item"></li>`);
   todoItem.append($('<input type="checkbox" class="col-1">').attr('checked', todos[i].done));
   todoItem.append($(`<span class="col-8">${todos[i].task}</span>`));
 
