@@ -13,7 +13,11 @@ route.get('/', (req, res) => {
   res.send(students)
 })
 
-route.get('/:id', (req, res) => {
+
+route.get('/:id', (req, res, next) => {
+  if (isNaN(parseInt(req.params.id))) {
+    next()
+  }
   res.send(students[req.params.id - 1])
 })
 
@@ -22,7 +26,13 @@ route.post('/new', (req, res) => {
     name: req.body.name,
     age: req.body.age
   })
-  res.send({success: true})
+  res.redirect(req.baseUrl)
 })
+
+
+// route.get('/redir', (req, res) => {
+//   res.redirect(req.baseUrl)
+// })
+
 
 module.exports = route
