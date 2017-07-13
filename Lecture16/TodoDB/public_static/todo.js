@@ -13,7 +13,12 @@ $(function () {
     $.get('/todos',
       function (data) {
         for (todo of data) {
-          todolist.append($(`<li> ${todo.task}</li>`))
+          todolist.append($(`
+          <li> 
+            <span>${todo.task}</span>
+            <span>done = ${todo.done}</span>
+          </li>`
+          ))
         }
       }
     )

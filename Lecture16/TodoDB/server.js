@@ -3,7 +3,7 @@
  */
 const express = require('express');
 const bp = require('body-parser');
-const Todos = require('./db').Todos
+const db = require('./db')
 
 const app = express();
 
@@ -14,7 +14,7 @@ app.use(bp.json())
 
 //Return list of all todos
 app.get('/todos', (req, res) => {
-  Todos.findAll().then(function (todos) {
+  db.getTodos().then(function (todos) {
     res.send(todos)
   }).catch(function (err) {
     res.send({error: "Could not retrieve todos"})
@@ -23,9 +23,7 @@ app.get('/todos', (req, res) => {
 
 //Add a new todo
 app.post('/todos', (req, res) => {
-  Todos.create({
-    task: req.body.task
-  }).then(function () {
+  db.addTodo(req.query.task).then(function () {
 
     res.send({success: true})
 

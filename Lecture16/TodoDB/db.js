@@ -11,19 +11,32 @@ const db = new Sequelize({
   dialect: 'mysql'
 })
 
+
 const Todos = db.define('todos', {
   id: {
     type: Sequelize.DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
-  task: Sequelize.DataTypes.STRING
+  task: Sequelize.DataTypes.STRING,
+  done: Sequelize.DataTypes.BOOLEAN
 })
 
-db.sync().then(function () {
+db.sync({alter: true}).then(function () {
   console.log("Database is ready");
 })
 
+function addTodo(task) {
+  return Todos.create({
+    task: task,
+    done: false
+  })
+}
+
+function getTodos () {
+  return Todos.findAll()
+}
+
 module.exports = {
-  Todos
+  addTodo, getTodos
 }
