@@ -9,17 +9,29 @@ const app = express();
 const server = http.Server(app);
 const io = socketio(server);
 
+let users = {}
+let chats = []
+
 app.use('/', express.static(__dirname + "/public_static"))
 app.get('/hello', (r,s) => s.send("hello"))
 
 io.on('connection', (socket) => {
-    console.log("New client connected");
+  console.log("New client connected");
 
-    socket.on('new_message', (data) => {
-        let chat = `${socket.id} : ${data}`
-        console.log(chat);
-        socket.broadcast.emit('recv_message', chat)
+  socket.on('login', (username) => {
+    console.log('User logged in : ' + socket.id);
+    users[socket.id] = username
+    socket.emit('logged_in', {username, chats})
   })
+
+
+  socket.on('new_message', (data) => {
+    let chat = users[socket.id] + ": " + data
+    chats.push(chat)
+    console.log('msg received');
+    io.emit('recv_message', chat)
+  })
+
 })
 
 

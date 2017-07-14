@@ -6,15 +6,31 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="jquery.js"></script>
     <script src="client.js"></script>
+    <style>
+        #chat-container {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 
-<input type="text" id="newmsg">
-<button id="sendmsg">Send</button>
+<div id="login-container">
+    <input placeholder="username" type="text" id="username">
+    <button id="login">Login</button>
+</div>
 
-<ul id="msglist">
+<div id="chat-container">
+    <h3> Chats </h3>
+    <ul id="msglist">
+    </ul>
 
-</ul>
+    <br>
+    <input type="text" placeholder="your message" id="newmsg">
+    <button id="sendmsg">Send</button>
+
+
+</div>
+
 
 </body>
 </html>
