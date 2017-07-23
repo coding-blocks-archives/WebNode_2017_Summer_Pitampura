@@ -1,0 +1,21 @@
+{
+  "name": "heroku-deploy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "PORT=1337 node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3",
+    "sequelize": "^4.4.2"
+  },
+  "engines": {
+    "node": "8",
+    "npm": "5"
+  }
+}
